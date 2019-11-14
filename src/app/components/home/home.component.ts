@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RestaurantService } from 'src/app/services/restaurant.service';
+import { Observable } from 'rxjs';
+import { FoodItem } from 'src/app/model/food-item';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  foodItems: Observable<FoodItem[]>;
+
+  constructor(private restaurantSvc: RestaurantService) {    
+    this.foodItems=this.restaurantSvc.getFoodItems();
+   }
 
   ngOnInit() {
   }
